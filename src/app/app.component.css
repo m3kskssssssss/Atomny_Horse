@@ -1,5 +1,6 @@
 :host {
   --content-padding: 10px;
+  font-family: '8bit', sans-serif
 }
 header {
   display: block;
@@ -9,4 +10,25 @@ header {
 }
 .content {
   padding: var(--content-padding);
+
 }
+
+h1 {
+font-family: '8bit', sans-serif
+  text-align: center;
+  font-weight: 700; /* Примените жирный шрифт для заголовка */
+}
+
+p {
+font-family: '8bit', sans-serif
+  text-align: center;
+  font-weight: 400; /* Примените обычный шрифт для параграфов */
+}
+
+@font-face {
+	font-family: "8bit";
+	src: url("./../fonts/Visitor Rus.ttf") format("truetype");
+	font-style: normal;
+	font-weight: normal;
+
+  }

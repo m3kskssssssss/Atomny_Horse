@@ -29,16 +29,16 @@ export class ChessboardComponent {
   }
 
   onCellClick(x: number, y: number) {
-  if (this.knightPosition === null) {
-    // Устанавливаем начальную позицию коня
-    this.knightPosition = { x, y };
-    this.board[x][y].number = 1; // Устанавливаем номер первого хода
-    this.currentMove = 1; // Устанавливаем текущий ход
-    this.highlightPossibleMoves(); // Подсвечиваем возможные ходы
-  } else if (this.isValidMove(x, y)) {
-    this.makeMove(x, y);
+    if (this.knightPosition === null) {
+      // Устанавливаем начальную позицию коня
+      this.knightPosition = { x, y };
+      this.board[x][y].number = 1; // Устанавливаем номер первого хода
+      this.currentMove = 1; // Устанавливаем текущий ход
+      this.highlightPossibleMoves(); // Подсвечиваем возможные ходы
+    } else if (this.isValidMove(x, y)) {
+      this.makeMove(x, y);
+    }
   }
-}
 
   isValidMove(x: number, y: number): boolean {
     return this.knightPosition !== null &&
@@ -53,17 +53,21 @@ export class ChessboardComponent {
   }
 
   makeMove(x: number, y: number) {
-  if (this.knightPosition) {
-    this.board[this.knightPosition.x][this.knightPosition.y].isHighlighted = false;
+    if (this.knightPosition) {
+      this.board[this.knightPosition.x][this.knightPosition.y].isHighlighted = false;
+    }
+
+    this.isMoving = true; // Устанавливаем состояние перемещения
+    setTimeout(() => {
+      this.currentMove++;
+      this.board[x][y] = { number: this.currentMove, isHighlighted: false };
+      this.knightPosition = { x, y };
+      this.highlightPossibleMoves(); // Подсвечиваем возможные ходы
+      this.checkGameStatus();
+      this.isMoving = false; // Сбрасываем состояние перемещения
+    }, 600); // Задержка для имитации перемещения (300 мс)
   }
 
-  this.currentMove++;
-  this.board[x][y] = { number: this.currentMove, isHighlighted: false };
-  this.knightPosition = { x, y };
-
-  this.highlightPossibleMoves(); // Подсвечиваем возможные ходы
-  this.checkGameStatus();
-}
 
   highlightPossibleMoves() {
   const moves = [
@@ -90,6 +94,9 @@ export class ChessboardComponent {
   isInBounds(x: number, y: number): boolean {
     return x >= 0 && x < 10 && y >= 0 && y < 10;
   }
+
+  isMoving: boolean = false; // Переменная для отслеживания состояния перемещения
+
 
   checkGameStatus() {
     const allFilled = this.board.flat().every(cell => cell.number !== null);

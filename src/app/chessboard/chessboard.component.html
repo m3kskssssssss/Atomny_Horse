@@ -5,9 +5,13 @@
            class="cell"
            (click)="onCellClick(i, j)"
            [ngClass]="{'highlighted': cell.isHighlighted, 'white-cell': (i + j) % 2 === 0, 'black-cell': (i + j) % 2 !== 0}">
-        <img *ngIf="knightPosition?.x === i && knightPosition?.y === j"
-             src="assets/knight.png"
-             alt="Knight"
+        <img *ngIf="knightPosition?.x === i && knightPosition?.y === j && !isMoving"
+             src="assets/stoped.png"
+             alt="Knight Stopped"
+             style="width: 40px; height: 40px;">
+        <img *ngIf="isMoving && knightPosition?.x === i && knightPosition?.y === j"
+             src="assets/moved.png"
+             alt="Knight Moving"
              style="width: 40px; height: 40px;">
         <span *ngIf="cell.number !== null && !(knightPosition?.x === i && knightPosition?.y === j)" class="number">{{ cell.number }}</span>
       </div>

@@ -28,6 +28,7 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  font-family: "8bit";
   font-size: 24px; /* Увеличиваем размер шрифта для чисел */
   border: 1px solid #000; /* Рамка для клеток */
 }
@@ -49,6 +50,15 @@ body {
 .reset-button {
   margin-top: 20px; /* Отступ сверху для кнопки сброса */
   padding: 10px 20px; /* Отступы внутри кнопки */
-  font-size: 16px; /* Размер шрифта для кнопки */
+  font-size: 26px; /* Размер шрифта для кнопки */
   cursor: pointer; /* Указатель при наведении */
+  font-family: "8bit";
 }
+
+@font-face {
+	font-family: "8bit";
+	src: url("./../../fonts/Visitor Rus.ttf") format("truetype");
+	font-style: normal;
+	font-weight: normal;
+
+  }
