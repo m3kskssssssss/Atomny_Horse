@@ -16,16 +16,16 @@ body {
 .chessboard {
   margin-top: 5px
   display: grid;
-  grid-template-columns: repeat(10, 50px);
-  grid-template-rows: repeat(10, 50px);
+  grid-template-columns: repeat(10, 35px);
+  grid-template-rows: repeat(10, 35px);
   margin: auto; /* Центрируем доску */
   border: 0px solid #000; /* Добавляем рамку вокруг доски */
 }
 
 .cell {
   position: relative;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,12 +57,7 @@ body {
   font-family: "8bit";
 }
 
-.knight {
-  position: absolute; /* Позиционирование для анимации */
-  top: 1; /* Начальная позиция по вертикали */
-  left: 1; /* Начальная позиция по горизонтали */
-  transition: transform 0.5s ease; /* Плавный переход */
-}
+
 
 .moving {
   animation: moveKnight 0.5s forwards; /* Применяем анимацию */
@@ -90,21 +85,23 @@ body {
 
 .chessboard {
   display: grid;
-  grid-template-columns: repeat(10, 50px);
-  grid-template-rows: repeat(10, 50px);
+  grid-template-columns: repeat(10, 35px);
+  grid-template-rows: repeat(10, 35px);
   position: relative; /* Для позиционирования коня */
 }
 
 .cell {
   position: relative; /* Устанавливаем относительное позиционирование для клеток */
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
 }
 
 .knight {
-  position: absolute; /* Позиционирование для анимации */
-  width: 40px; /* Ширина изображения коня */
-  height: 40px; /* Высота изображения коня */
+  position: relative; /* Позиционирование для анимации */
+  left: -3px;
+  top: -2px;
+  width: 25px; /* Ширина изображения коня */
+  height: 25px; /* Высота изображения коня */
   transition: transform 0.5s ease; /* Плавный переход */
 }
 
