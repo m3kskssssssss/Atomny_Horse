@@ -17,6 +17,7 @@ export class ChessboardComponent {
   board: Cell[][] = [];
   currentMove: number = 0;
   knightPosition: { x: number, y: number } | null = null;
+  isMoving: boolean = false; // Переменная для отслеживания состояния перемещения
 
   constructor() {
     this.initializeBoard();
@@ -53,20 +54,33 @@ export class ChessboardComponent {
   }
 
   makeMove(x: number, y: number) {
-    if (this.knightPosition) {
-      this.board[this.knightPosition.x][this.knightPosition.y].isHighlighted = false;
-    }
-
-    this.isMoving = true; // Устанавливаем состояние перемещения
-    setTimeout(() => {
-      this.currentMove++;
-      this.board[x][y] = { number: this.currentMove, isHighlighted: false };
-      this.knightPosition = { x, y };
-      this.highlightPossibleMoves(); // Подсвечиваем возможные ходы
-      this.checkGameStatus();
-      this.isMoving = false; // Сбрасываем состояние перемещения
-    }, 600); // Задержка для имитации перемещения (300 мс)
+  if (this.knightPosition) {
+    this.board[this.knightPosition.x][this.knightPosition.y].isHighlighted = false;
   }
+
+  this.isMoving = true; // Устанавливаем состояние перемещения
+
+  // Устанавливаем новую позицию коня
+  this.knightPosition = { x, y };
+  this.currentMove++;
+
+  // Обновляем клетку с номером хода
+  this.board[x][y] = { number: this.currentMove, isHighlighted: false };
+
+  // Запускаем анимацию
+  const knightElement = document.querySelector('.knight') as HTMLElement;
+  const cellElement = document.querySelector(`.cell:nth-child(${y + 1})`) as HTMLElement;
+  const cellRect = cellElement.getBoundingClientRect();
+
+  // Устанавливаем позицию коня в новую клетку
+  knightElement.style.transform = `translate(${cellRect.left}px, ${cellRect.top}px)`;
+
+  setTimeout(() => {
+    this.isMoving = false; // Сбрасываем состояние перемещения
+    this.highlightPossibleMoves(); // Подсвечиваем возможные ходы
+    this.checkGameStatus();
+  }, 500); // Задержка для анимации
+}
 
 
   highlightPossibleMoves() {
@@ -95,7 +109,8 @@ export class ChessboardComponent {
     return x >= 0 && x < 10 && y >= 0 && y < 10;
   }
 
-  isMoving: boolean = false; // Переменная для отслеживания состояния перемещения
+
+  targetCell: { x: number, y: number } | null = null; // Целевая клетка для анимации
 
 
   checkGameStatus() {
