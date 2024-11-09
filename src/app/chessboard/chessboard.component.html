@@ -1,0 +1,12 @@
+
+<div class="chessboard">
+  <div *ngFor="let row of board; let rowIndex = index" class="row">
+    <div *ngFor="let cell of row; let colIndex = index"
+         class="cell"
+         [ngClass]="{'highlighted': cell.isHighlighted}"
+         (click)="onCellClick(rowIndex, colIndex)">
+      {{ cell.number !== null ? cell.number : '' }}
+    </div>
+  </div>
+</div>
+<button (click)="resetGame()">Сбросить игру</button>
