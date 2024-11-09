@@ -21,6 +21,7 @@
               "src/favicon.ico",
               "src/assets"
             ],
+            "baseHref": "Atomny_Horse",
             "styles": [
               "src/styles.css"
             ],
