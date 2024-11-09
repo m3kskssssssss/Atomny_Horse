@@ -1,0 +1,122 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Занимает всю высоту экрана */
+  margin: 0; /* Убираем отступы */
+  background-color: #f0f0f0; /* Цвет фона страницы */
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column; /* Вертикальное выравнивание */
+  align-items: center; /* Центрируем содержимое по горизонтали */
+}
+
+.chessboard {
+  margin-top: 5px
+  display: grid;
+  grid-template-columns: repeat(10, 35px);
+  grid-template-rows: repeat(10, 35px);
+  margin: auto; /* Центрируем доску */
+  border: 0px solid #000; /* Добавляем рамку вокруг доски */
+}
+
+.cell {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: "8bit";
+  font-size: 24px; /* Увеличиваем размер шрифта для чисел */
+  border: 1px solid #000; /* Рамка для клеток */
+}
+
+.white-cell {
+  background-color: white; /* Белые клетки */
+  color: black; /* Числа на белых клетках черные */
+}
+
+.black-cell {
+  background-color: black; /* Черные клетки */
+  color: white; /* Числа на черных клетках белые */
+}
+
+.highlighted {
+  background-color: yellow; /* Подсветка доступных ходов */
+}
+
+.reset-button {
+  margin-top: 20px; /* Отступ сверху для кнопки сброса */
+  padding: 10px 20px; /* Отступы внутри кнопки */
+  font-size: 26px; /* Размер шрифта для кнопки */
+  cursor: pointer; /* Указатель при наведении */
+  font-family: "8bit";
+}
+
+
+
+.moving {
+  animation: moveKnight 0.5s forwards; /* Применяем анимацию */
+}
+
+@keyframes moveKnight {
+  0% {
+    transform: translate(0, 0); /* Начальная позиция */
+  }
+  50% {
+    transform: translate(0px, -50px); /* Параметры для синусоидального движения */
+  }
+  100% {
+    transform: translate(0, 0); /* Конечная позиция */
+  }
+}
+
+@font-face {
+	font-family: "8bit";
+	src: url("./../../fonts/Visitor Rus.ttf") format("truetype");
+	font-style: normal;
+	font-weight: normal;
+
+  }
+
+.chessboard {
+  display: grid;
+  grid-template-columns: repeat(10, 35px);
+  grid-template-rows: repeat(10, 35px);
+  position: relative; /* Для позиционирования коня */
+}
+
+.cell {
+  position: relative; /* Устанавливаем относительное позиционирование для клеток */
+  width: 35px;
+  height: 35px;
+}
+
+.knight {
+  position: relative; /* Позиционирование для анимации */
+  left: -3px;
+  top: -2px;
+  width: 25px; /* Ширина изображения коня */
+  height: 25px; /* Высота изображения коня */
+  transition: transform 0.5s ease; /* Плавный переход */
+}
+
+.moving {
+  animation: jump 0.5s forwards; /* Применяем анимацию */
+}
+
+@keyframes jump {
+  0% {
+    transform: translate(0, 0); /* Начальная позиция */
+  }
+  50% {
+    transform: translate(0, -50px); /* Подъем на 50px */
+  }
+  100% {
+    transform: translate(0, 0); /* Возврат на место */
+  }
+}
