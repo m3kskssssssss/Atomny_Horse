@@ -8,6 +8,7 @@ import { ChessboardComponent } from './chessboard/chessboard.component'; // Им
     <p>Цель игры — заполнить всю доску числами, следуя правилам хода коня.</p>
     <p>Выберите клетку для следующего хода.</p>
     <app-chessboard></app-chessboard>
+    <p>by m3kskssssssss</p>
   `,
   styles: [`
     h1 {

@@ -1,23 +1,54 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Занимает всю высоту экрана */
+  margin: 0; /* Убираем отступы */
+  background-color: #f0f0f0; /* Цвет фона страницы */
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column; /* Вертикальное выравнивание */
+  align-items: center; /* Центрируем содержимое по горизонтали */
+}
+
 .chessboard {
   display: grid;
   grid-template-columns: repeat(10, 50px);
   grid-template-rows: repeat(10, 50px);
+  margin: auto; /* Центрируем доску */
+  border: 0px solid #000; /* Добавляем рамку вокруг доски */
 }
 
 .cell {
   width: 50px;
   height: 50px;
-  border: 1px solid #000;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  font-size: 24px; /* Увеличиваем размер шрифта для чисел */
+  border: 1px solid #000; /* Рамка для клеток */
+}
+
+.white-cell {
+  background-color: white; /* Белые клетки */
+  color: black; /* Числа на белых клетках черные */
+}
+
+.black-cell {
+  background-color: black; /* Черные клетки */
+  color: white; /* Числа на черных клетках белые */
 }
 
 .highlighted {
-  background-color: yellow;
+  background-color: yellow; /* Подсветка доступных ходов */
 }
 
-.row {
-  display: contents;
+.reset-button {
+  margin-top: 20px; /* Отступ сверху для кнопки сброса */
+  padding: 10px 20px; /* Отступы внутри кнопки */
+  font-size: 16px; /* Размер шрифта для кнопки */
+  cursor: pointer; /* Указатель при наведении */
 }

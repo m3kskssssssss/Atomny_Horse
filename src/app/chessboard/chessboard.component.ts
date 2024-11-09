@@ -53,38 +53,39 @@ export class ChessboardComponent {
   }
 
   makeMove(x: number, y: number) {
-    if (this.knightPosition) {
-      this.board[this.knightPosition.x][this.knightPosition.y].isHighlighted = false;
-    }
-
-    this.currentMove++;
-    this.board[x][y] = { number: this.currentMove, isHighlighted: false };
-    this.knightPosition = { x, y };
-
-    this.highlightPossibleMoves();
-    this.checkGameStatus();
+  if (this.knightPosition) {
+    this.board[this.knightPosition.x][this.knightPosition.y].isHighlighted = false;
   }
 
+  this.currentMove++;
+  this.board[x][y] = { number: this.currentMove, isHighlighted: false };
+  this.knightPosition = { x, y };
+
+  this.highlightPossibleMoves(); // Подсвечиваем возможные ходы
+  this.checkGameStatus();
+}
+
   highlightPossibleMoves() {
-    const moves = [
-      { dx: 2, dy: 1 }, { dx: 2, dy: -1 },
-      { dx: -2, dy: 1 }, { dx: -2, dy: -1 },
-      { dx: 1, dy: 2 }, { dx: 1, dy: -2 },
-      { dx: -1, dy: 2 }, { dx: -1, dy: -2 }
-    ];
+  const moves = [
+    { dx: 2, dy: 1 }, { dx: 2, dy: -1 },
+    { dx: -2, dy: 1 }, { dx: -2, dy: -1 },
+    { dx: 1, dy: 2 }, { dx: 1, dy: -2 },
+    { dx: -1, dy: 2 }, { dx: -1, dy: -2 }
+  ];
 
-    this.board.forEach(row => row.forEach(cell => cell.isHighlighted = false));
+  // Сбрасываем подсветку для всех клеток
+  this.board.forEach(row => row.forEach(cell => cell.isHighlighted = false));
 
-    if (this.knightPosition) {
-      for (const move of moves) {
-        const newX = this.knightPosition.x + move.dx;
-        const newY = this.knightPosition.y + move.dy;
-        if (this.isInBounds(newX, newY) && this.board[newX][newY].number === null) {
-          this.board[newX][newY].isHighlighted = true;
-        }
+  if (this.knightPosition) {
+    for (const move of moves) {
+      const newX = this.knightPosition.x + move.dx;
+      const newY = this.knightPosition.y + move.dy;
+      if (this.isInBounds(newX, newY) && this.board[newX][newY].number === null) {
+        this.board[newX][newY].isHighlighted = true; // Подсвечиваем доступные клетки
       }
     }
   }
+}
 
   isInBounds(x: number, y: number): boolean {
     return x >= 0 && x < 10 && y >= 0 && y < 10;
