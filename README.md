@@ -1,5 +1,7 @@
 # Atomny_Horse
-## For running in your browser by localhost
+## For running in your browser:
+## [Atomny Horse](https://m3kskssssssss.github.io/Atomny_Horse/)
+## For running in your browser by localhost:
 ### 1) Run repository by your IDE
 ### 2) Run local console code:
 ```bash
